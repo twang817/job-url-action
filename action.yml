@@ -29,7 +29,7 @@ runs:
 
           var jobUrl;
           for (const {name, html_url} of result.data.jobs) {
-              if (name == '${{ input.job_name }}') {
+              if (name == '${{ inputs.job_name }}') {
                   jobUrl = html_url
                   break;
               }
