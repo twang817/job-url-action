@@ -18,7 +18,7 @@ runs:
       id: job-url
       uses: actions/github-script@v6
       with:
-        github-token: ${{ inputs.github_token }}
+        github-token: '${{ inputs.github_token }}'
         result-encoding: string
         script: |
           const result = await github.rest.actions.listJobsForWorkflowRun({
@@ -27,6 +27,9 @@ runs:
             run_id: context.runId,
           });
 
+          console.log(result)
+          console.log(result.data.jobs[0])
+          console.log(inputs.job_name)
           var jobUrl;
           for (const {name, html_url} of result.data.jobs) {
               if (name == '${{ inputs.job_name }}') {
@@ -34,4 +37,5 @@ runs:
                   break;
               }
           }
+          console.log(`ressult: ${jobUrl}`)
           return jobUrl
