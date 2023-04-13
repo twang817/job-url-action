@@ -17,9 +17,8 @@ Retrieves the job url given a job name.
         uses: twang817/job-url-action@v1
         with:
           github_token: ${{ steps.generate_token.outputs.token }}
-          job_name: 'test-job (${{ matrix.arch }}, ${{ matrix.os }})`
+          job_name: test-job (${{ matrix.os }}, ${{ matrix.arch }})
 
       - name: Echo Job URL
-        runs: |
-            echo '${{ steps.job-url.outputs.result }}'
+        run: echo '${{ steps.job-url.outputs.job_url }}'
 ```
